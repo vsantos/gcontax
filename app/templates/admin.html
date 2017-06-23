@@ -1,0 +1,241 @@
+<html>
+<title> G Contax </title>
+
+<head>
+	<link rel="shortcut icon" href="static/favicon.ico">
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed|Nunito" rel="stylesheet">
+	<link rel="stylesheet" href="static/bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="static/main.css?q=3">
+	<link rel="stylesheet" href="static/tables.css">
+</head>
+
+<body onload="getClients();getCompanies();">
+	<div class="row-fluid">
+		<ul class="navigationBar">
+			<li class="navigationButtons navigationButtonsLeft">
+				<img class="navigatorImages" src="static/imgs/gcontax.logo">
+			</li>
+			<li class="navigationButtons navigationButtonsLeft"><a class="btn navigationLink" href="/">Home</a></li>
+			<li class="navigationButtons navigationButtonsLeft"><a class="btn navigationLink" href="/contabil">Contab</a></li>
+			<li class="navigationButtons navigationButtonsRight"><a class="btn navigationLink active_menu_bar" href="/admin">Admin</a></li>
+		</ul>
+	</div>
+
+	<div class="container-fluid">
+		<br>
+		<div class="row">
+			<div class="col-sm-2">
+				<br>
+
+			</div>
+			<div class="col-sm-8">
+				<br>
+				<p>
+					<h1 align="center">Administration</h1>
+				</p>
+
+				<!-- Logs container -->
+				<div align="center" id="adminMessage" class="" role="alert">
+					<ul class="nav nav-tabs">
+						<li><a data-toggle="tab" href="#menu1">Clients</a></li>
+						<li><a data-toggle="tab" href="#menu2">Companies</a></li>
+						<li class="active"><a data-toggle="tab" href="#home"><i style='color:rgba(0,0,0,0.0);'>|</i><span class="glyphicon glyphicon-signal"></span></a></li>
+					</ul>
+
+					<div class="tab-content">
+						<div id="home" class="tab-pane fade in active">
+							<h3>Healtcheck</h3>
+
+							<br>
+							<div id="databaseHC" class="HCsuccess">
+								<p><span class="glyphicon glyphicon-tasks"></span> - MySQL</p>
+							</div>
+							<div i="webserverHC" class="HCdanger">
+								<p><span class="glyphicon glyphicon-globe"></span> - Nginx</p>
+							</div>
+
+							<br>
+							<button class="btn btn-info"><span><i class="glyphicon glyphicon-refresh"></i></span> Update</button>
+						</div>
+						<div id="menu1" class="tab-pane fade">
+							<br>
+							<ul class="pager">
+								<li><a style="border:1px;" href="#addClient" data-toggle="collapse"><span class="glyphicon glyphicon-menu-hamburger"></span> Register a client</a></li>
+								<li><a style="border:1px;" href="#listClients" data-toggle="collapse"><span class="glyphicon glyphicon-menu-hamburger"></span> Check clients</a></li>
+							</ul>
+
+							<!-- Create new client -->
+							<div id="operationClientMessage">
+							</div>
+
+							<div id="addClient" class="collapse">
+								<br>
+								<div class="containerJumboForm list-group-item center-block">
+									<form>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+											<input id="clientName" type="text" class="form-control" name="clientName" placeholder="* Name">
+										</div>
+										<div id="clientNameMsg" class="text-left"></div>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="glyphicon glyphicon-paste"></i></span>
+											<input id="clientCPF" type="text" class="form-control" name="clientCPF" placeholder="* CPF">
+										</div>
+										<div id="clientCPFMsg" class="text-left"></div>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+											<input id="clientEmail" type="email" class="form-control" name="clientEmail" placeholder="Email">
+										</div>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="glyphicon glyphicon-earphone"></i></span>
+											<input id="clientPhone" type="text" class="form-control" name="clientPhone" placeholder="Phone">
+										</div>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="glyphicon glyphicon-pushpin"></i></span>
+											<input id="clientCity" type="text" class="form-control" name="clientCity" placeholder="City">
+										</div>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="glyphicon glyphicon-road"></i></span>
+											<input id="clientCEP" type="text" class="form-control" name="clientCEP" placeholder="CEP">
+										</div>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+											<input id="clientAddress" type="text" class="form-control" name="clientAddress" placeholder="Address">
+										</div>
+									</form>
+									<div align="center" class="center-block">
+										<button onclick="validateClientInput();" class="btn btn-primary"><span><i class="glyphicon glyphicon-floppy-disk"></i></span></button>
+									</div>
+								</div>
+							</div>
+
+							<!-- Getting clients -->
+							<br>
+							<div id="listClients" class="collapse">
+								<div class="page-header">
+									<h1> </h1>
+								</div>
+								<div class="datagrid">
+									<table class="table table-responsive">
+										<thead align='center'>
+											<tr>
+												<th class="text-center"><b>ID</b></th>
+												<th class="text-center"><b>Name</b></th>
+												<th class="text-center"><b>CPF</b></th>
+												<th class="text-center"><b>Email</b></th>
+												<th class="text-center"><b>Phone</b></th>
+												<th class="text-center"><b>City</b></th>
+												<th class="text-center"><b>CEP</b></th>
+												<th class="text-center"><b>Address</b></th>
+											</tr>
+										</thead>
+										<tbody id='dynamicClientsTable'></tbody>
+									</table>
+								</div>
+								<br>
+								<button class="btn btn-warning" onclick="getClients();"><span><i class="glyphicon glyphicon-refresh buttonYellow"></i></span> Refresh Clients</button>
+							</div>
+
+						</div>
+						<div id="menu2" class="tab-pane fade">
+							<br>
+							<ul class="pager">
+								<li><a style="border:1px;" href="#addComp" data-toggle="collapse"><span class="glyphicon glyphicon-menu-hamburger"></span> Register a company</a></li>
+
+								<li><a style="border:1px;" href="#listComp" data-toggle="collapse"><span class="glyphicon glyphicon-menu-hamburger"></span> Check companies</a></li>
+							</ul>
+
+							<!-- Create new company -->
+							<div id="operationCompanyMessage">
+							</div>
+
+							<div id="addComp" class="collapse">
+								<br>
+								<div class="containerJumboForm list-group-item center-block">
+									<form>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="glyphicon glyphicon-copyright-mark"></i></span>
+											<input id="companyName" type="text" class="form-control" name="companyName" placeholder="* Company">
+										</div>
+										<div id="companyNameMsg" class="text-left"></div>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="glyphicon glyphicon-paste"></i></span>
+											<input id="companyCNPJ" type="text" class="form-control" name="companyCNPJ" placeholder="* CNPJ">
+										</div>
+										<div id="companyCNPJMsg" class="text-left"></div>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="glyphicon glyphicon-phone-alt"></i></span>
+											<input id="companyPhone" type="text" class="form-control" name="companyPhone" placeholder="Phone">
+										</div>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="glyphicon glyphicon-pushpin"></i></span>
+											<input id="companyCity" type="text" class="form-control" name="companyCity" placeholder="City">
+										</div>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="glyphicon glyphicon-road"></i></span>
+											<input id="companyCEP" type="text" class="form-control" name="companyCEP" placeholder="CEP">
+										</div>
+										<div class="input-group">
+											<span class="input-group-addon"><i class="glyphicon glyphicon-home"></i></span>
+											<input id="companyAddress" type="text" class="form-control" name="companyAddress" placeholder="Address">
+										</div>
+									</form>
+									<div align="center" class="center-block">
+										<button onclick="validateCompanyInput();" class="btn btn-primary"><span><i class="glyphicon glyphicon-floppy-disk"></i></span></button>
+									</div>
+								</div>
+							</div>
+
+							<!-- Getting companies -->
+							<div id="listComp" class="collapse">
+								<div class="page-header">
+									<h1> </h1>
+								</div>
+								<div class="datagrid">
+									<table class="table">
+										<thead>
+											<tr>
+												<th class="text-center"><b>ID</b></th>
+												<th class="text-center"><b>Company</b></th>
+												<th class="text-center"><b>CNPJ</b></th>
+												<th class="text-center"><b>Phone</b></th>
+												<th class="text-center"><b>City</b></th>
+												<th class="text-center"><b>CEP</b></th>
+												<th class="text-center"><b>Address</b></th>
+											</tr>
+										</thead>
+										<tbody>
+											<tbody id='dynamicCompaniesTable'></tbody>
+										</tbody>
+									</table>
+								</div>
+								<br>
+								<button class="btn btn-warning" onclick="getCompanies();"><span><i class="glyphicon glyphicon-refresh buttonYellow"></i></span> Refresh Companies</button>
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="col-sm-2">
+
+			</div>
+		</div>
+	</div>
+
+	<br>
+	<br>
+
+	<div id="footer">
+		<p id="footerMessage">&copy; G.Contax 2017</p>
+	</div>
+
+	<script src="static/bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="static/scripts/db_clients.js"></script>
+	<script src="static/scripts/db_companies.js"></script>
+	<script src="static/scripts/alerts.js"></script>
+</body>
+
+</html>

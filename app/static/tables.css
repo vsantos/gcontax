@@ -1,0 +1,38 @@
+.datagrid table {
+	border-collapse: collapse;
+	text-align: left;
+	width: 100%;
+}
+
+.datagrid {
+	background: #fff;
+	overflow: hidden;
+	border: 1px solid #006699;
+	border-radius: 3px;
+}
+
+.datagrid table td,
+.datagrid table th {
+	padding: 3px 10px;
+}
+
+.datagrid table thead th {
+	background-color: rgba(255, 255, 224, 0.6);
+	color: black;
+	font-size: 15px;
+	font-weight: normal;
+	border-left: 1px solid #E1EEF4;
+}
+
+.datagrid table tbody td {
+	color: #00496B;
+	border-left: 1px solid #E1EEF4;
+	font-size: 14px;
+	font-weight: normal;
+}
+
+.datagrid table tbody .alt td {
+	background: #E1EEF4;
+	color: #00496B;
+}
+

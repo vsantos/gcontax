@@ -1,0 +1,198 @@
+<html>
+<title> G Contax </title>
+
+<head>
+	<link rel="shortcut icon" href="static/favicon.ico">
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed|Nunito" rel="stylesheet">
+	<link rel="stylesheet" href="static/bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="static/main.css?q=3">
+	<link rel="stylesheet" href="static/tables.css">
+</head>
+
+<body onload="getCompaniesName();getBillings();">
+	<div class="row-fluid">
+		<ul class="navigationBar">
+			<li class="navigationButtons navigationButtonsLeft">
+				<img class="navigatorImages" src="static/imgs/gcontax.logo">
+			</li>
+			<li class="navigationButtons navigationButtonsLeft"><a class="btn navigationLink" href="/">Home</a></li>
+			<li class="navigationButtons navigationButtonsLeft"><a class="btn navigationLink active_menu_bar" href="/contabil">Contab</a></li>
+			<li class="navigationButtons navigationButtonsRight"><a class="btn navigationLink" href="/admin">Admin</a></li>
+		</ul>
+	</div>
+
+	<div class="container-fluid">
+		<br>
+		<div class="row">
+			<div class="col-sm-2">
+				<br>
+
+			</div>
+			<div class="col-sm-8">
+				<br>
+				<p>
+					<h1 align="center">Contab</h1>
+				</p>
+
+				<!-- Logs container -->
+				<div align="center" id="adminMessage" class="" role="alert">
+					<ul class="nav nav-tabs">
+						<li class="active"><a data-toggle="tab" href="#billing">Billing</a></li>
+						<li><a data-toggle="tab" href="#records">Records</a></li>
+						<li><a data-toggle="tab" href="#dashboard">Dashboard</a></li>
+					</ul>
+
+					<div class="tab-content">
+						<div id="billing" class="tab-pane fade in active">
+							<!-- Creating an Billing -->
+
+							<h3>Register a new billing for Juridic Person</h3>
+							<div id="operationCompanyBillingMessage"></div>
+							<br>
+							<div id="info" class="containerJumboForm list-group-item center-block">
+								<form>
+									<!-- Company names -->
+									<div id="billingCompanyLabel" class="form-group col-xs-7">
+										<label for="selectCompany">* Company</label>
+										<select class="form-control" id="billingCompany">
+										</select>
+									</div>
+									<!-- Service types -->
+									<div id="serviceTypeLabel" class="form-group col-xs-5">
+										<label for="serviceType">* Type of service</label>
+										<select class="form-control" id="serviceType">
+											<option></option>
+											<option>1 - Honorário Contábil</option>
+											<option>2 - Serviços Contábeis</option>
+											<option>3 - 13º Salário</option>
+											<option>4 - 50% Cancelamento de Empresa</option>
+											<option>5 - Abertura de Empresa</option>
+											<option>6 - Alteração de empresa</option>
+											<option>7 - Imposto de renda</option>
+										</select>
+									</div>
+
+									<!-- Calendar - Date picker -->
+									<div id="billingEmissionDateLabel" class="form-group col-xs-4">
+										<!-- Date input -->
+										<label class="control-label" for="date">* Emission Date</label>
+										<input class="form-control" id="billingEmissionDate" name="emissionDate" placeholder="yyyy-mm-dd" type="text" />
+									</div>
+
+									<div id="billingExpirationDateLabel" class="form-group col-xs-4">
+										<!-- Date input -->
+										<label class="control-label" for="date">* Expiration Date</label>
+										<input class="form-control" id="billingExpirationDate" name="expirationDate" placeholder="yyyy-mm-dd" type="text" />
+									</div>
+
+									<div id="billingCostLabel">
+										<label for="serviceType">* Cost</label>
+										<div class="input-group col-xs-4">
+											<span class="input-group-addon"><b>R$</b></span>
+											<input type="text" id="billingCost" class="form-control" placeholder='250,50'>
+										</div>
+									</div>
+								</form>
+							</div>
+
+							<br><button class="btn btn-success" onclick="validateBillingInput();"> <span> <i class="glyphicon glyphicon-plus"></i> Add </span></button>
+						</div>
+
+						<div id="records" class="tab-pane fade">
+							<h3>Records</h3>
+							<br>
+							<div class="HCdanger">
+								Not paid <span id="not_paid_count" class="badge">0</span>
+							</div>
+
+							<!-- Getting billings -->
+							<br>
+							<div class="page-header">
+								<h1> </h1>
+							</div>
+							<div class="datagrid">
+								<table class="table table-responsive">
+									<thead align='center'>
+										<tr>
+											<th class="text-center"></th>
+											<th class="text-center"><b>ID</b></th>
+											<th class="text-center"><b>Company</b></th>
+											<th class="text-center"><b>cost</b></th>
+											<th class="text-center"><b>Service Type Cod</b></th>
+											<th class="text-center"><b>Service Type Desc</b></th>
+											<th class="text-center"><b>Emission</b></th>
+											<th class="text-center"><b>Expiration</b></th>
+										</tr>
+									</thead>
+									<tbody id='dynamicBillingTable'></tbody>
+								</table>
+							</div>
+							<br>
+							<button class="btn btn-warning" onclick="getBillings();"><span><i class="glyphicon glyphicon-refresh buttonYellow"></i></span> Refresh Billings</button>
+
+							<br><br>
+							<button class="btn btn-success"> <span class="glyphicon glyphicon-th-list"></span> Export as Excel </button>
+						</div>
+
+						<div id="dashboard" class="tab-pane fade">
+							<h3>Menu</h3>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="col-sm-2">
+
+			</div>
+		</div>
+	</div>
+
+	<br>
+	<br>
+
+	<div id="footer">
+		<p id="footerMessage">&copy; G.Contax 2017</p>
+	</div>
+
+	<script src="static/bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="static/scripts/db_billing_jp.js"></script>
+	<script src="static/scripts/alerts.js"></script>
+	<!-- Include Date Range Picker -->
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css" />
+
+	<script>
+		$(document).ready(function() {
+			var date_input = $('input[name="emissionDate"]'); //our date input has the name "date"
+			var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+			var options = {
+				title: 'Some title',
+				format: 'yyyy-mm-dd',
+				container: container,
+				todayHighlight: true,
+				autoclose: true,
+				clearBtn: true,
+				locale: 'pt-BR',
+			};
+			date_input.datepicker(options);
+		})
+	</script>
+
+	<script>
+		$(document).ready(function() {
+			var date_input = $('input[name="expirationDate"]'); //our date input has the name "date"
+			var container = $('.bootstrap-iso form').length > 0 ? $('.bootstrap-iso form').parent() : "body";
+			var options = {
+				format: 'yyyy-mm-dd',
+				container: container,
+				autoclose: true,
+				clearBtn: true,
+				language: 'pt-BR',
+			};
+			date_input.datepicker(options);
+		})
+	</script>
+</body>
+
+</html>
