@@ -1,6 +1,6 @@
 version: '2'
 services:
-  web:
+  app:
     build: app/
     image: gcontax:0.1
     ports:
@@ -21,3 +21,10 @@ services:
       - MYSQL_DATABASE=gcontax
     volumes:
       - ./var/mysql:/var/lib/mysql
+  webserver:
+    build: webserver/
+    image: gcontax_nginx:0.1
+    ports:
+      - "80:80"
+    links:
+      - "app:app"
