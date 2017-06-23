@@ -1,0 +1,130 @@
+body {
+	background-color: #fff;
+	font-family: 'Nunito', sans-serif;
+}
+
+h3,
+h1 {
+	font-family: 'font-family: 'Lato', sans-serif;', sans-serif;
+}
+
+.alert-success,
+.alert-danger,
+.alert-warning {
+	width: 50%;
+}
+
+.navigationBar {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+	background-color: #2C5197;
+	width: 100%;
+	height: 40px;
+	border-radius: 2px;
+	position: fixed;
+	z-index: 2000;
+	border: 1px solid #00008B;
+}
+
+.navigationButtonsLeft {
+	float: left;
+}
+
+.navigatorImages {
+	width: 45px;
+	height: 35px;
+}
+
+.navigationButtonsRight {
+	float: right;
+}
+
+.navigationButtons .navigationLink {
+	display: block;
+	color: white;
+	text-align: center;
+	padding: 10px 16px;
+	text-decoration: none;
+}
+
+.navigationButtons .navigationLink:hover {
+	background-color: #4162a1;
+}
+
+.active_menu_bar {
+	background: #4162a1;
+}
+
+#buttonApp {
+	color: black;
+	font-family: 'Nunito', sans-serif;
+}
+
+#footer {
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	height: 30px;
+	text-align: center;
+	font-size: 10px;
+	color: white;
+	background: #4162a1;
+	border: 1px solid #00008B;
+	z-index: 2000;
+}
+
+#footerMessage {
+	padding: 8px 8px;
+}
+
+#notFound {
+	font-size: 200px;
+	opacity: 0.3;
+}
+
+#statusLoginForm {
+	width: 60%;
+	background-color: rgba(255, 255, 224, 0.6);
+	border: 1px solid rgba(0, 0, 0, 0.3);
+	box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.3);
+	border-radius: 04px;
+}
+
+.containerJumboForm {
+	width: 70%;
+	background-color: rgba(255, 255, 255,1);
+	border: 1px solid rgba(0, 0, 0, 0.3);
+	box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+	border-radius: 04px;
+}
+
+.HCdanger {
+	width: 30%;
+	background-color: #ffdddd;
+	border-left: 6px solid #f44336;
+}
+
+.HCsuccess {
+	width: 30%;
+	background-color: #ddffdd;
+	border-left: 6px solid #4CAF50;
+}
+
+.HCinfo {
+	width: 30%;
+	background-color: #e7f3fe;
+	border-left: 6px solid #2196F3;
+}
+
+.HCwarning {
+	width: 30%;
+	background-color: #ffffcc;
+	border-left: 6px solid #ffeb3b;
+}
+
+.btn-warning {
+	color: black;
+	background-color: rgba(255, 255, 224, 0.4);
+}

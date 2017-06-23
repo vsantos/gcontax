@@ -1,0 +1,23 @@
+version: '2'
+services:
+  web:
+    build: app/
+    image: gcontax:0.1
+    ports:
+      - "8080:8080"
+    environment:
+      - MYSQL_PORT_3306_TCP_ADDR=mysql_database_host
+    links:
+      - "storage:mysql_database_host"
+  storage:
+    build: storage/
+    image: gcontax_database:0.1
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=gcontax
+      - MYSQL_PASSWORD=gcontax
+      - MYSQL_DATABASE=gcontax
+    volumes:
+      - ./var/mysql:/var/lib/mysql

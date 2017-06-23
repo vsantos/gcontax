@@ -1,0 +1,80 @@
+<html>
+<title> G Contax </title>
+
+<head>
+	<link rel="shortcut icon" href="../static/imgs/favicon.ico" type="image/x-icon">
+	<link href="https://fonts.googleapis.com/css?family=Roboto+Condensed|Nunito" rel="stylesheet">
+	<link rel="stylesheet" href="../static/bower_components/bootstrap/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../static/main.css?q=128054982">
+</head>
+
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<ul class="navigationBar">
+				<li class="navigationButtons navigationButtonsLeft">
+					<img class="navigatorImages" src="static/imgs/walmart.logo">
+				</li>
+				<li class="navigationButtons navigationButtonsLeft"><a class="btn navigationLink disabled" href="index.html">Home</a></li>
+				<li class="navigationButtons navigationButtonsLeft"><a class="btn navigationLink disabled" href="#contábil.html">Contábil</a></li>
+				<li class="navigationButtons navigationButtonsRight"><a class="btn navigationLink disabled" href="#admin">Healthcheck</a></li>
+				<li class="navigationButtons navigationButtonsRight"><a class="btn navigationLink disabled" href="#healthcheck">Admin</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<br>
+		<div class="row">
+			<div class="col-sm-2">
+				<br>
+
+			</div>
+			<div class="col-sm-8">
+				<br>
+				<p>
+					<h1 align="center">Sign in</h1></p>
+				<div align="center" class="page-header"></div>
+
+				<div id="statusLoginForm" class="list-group-item center-block">
+					<form action='login' method='POST'>
+						<div class="form-group">
+							<label for="exampleInputEmail1">Login</label>
+							<input type="text" class="form-control" name="Inputlogin" id="InputLogin" aria-describedby="emailHelp" placeholder="Enter login">
+						</div>
+						<div class="form-group">
+							<label for="exampleInputPassword1">Password</label>
+							<input type="password" class="form-control" name="InputPassword" id="InputPassword" placeholder="Enter password">
+						</div>
+						<div class="form-check">
+							<label class="form-check-label">
+								<input type="checkbox" checked="" class="form-check-input "> Remember me
+							</label>
+						</div>
+						<div align="center" class="center-block"><button class="btn btn-primary">Login</button></div>
+					</form>
+				</div>
+
+				<!-- Logs container -->
+				<div align="center" id="adminMessage" class="" role="alert">
+					<div id=""></div>
+				</div>
+			</div>
+			<div class="col-sm-2">
+
+			</div>
+		</div>
+	</div>
+
+	<br>
+	<br>
+
+	<div id="footer">
+		<p id="footerMessage">&copy; G.Contax 2017</p>
+	</div>
+
+	<script src="../static/bower_components/jquery/dist/jquery.min.js"></script>
+	<script src="../static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script src="../static/scripts/admin.js"></script>
+</body>
+
+</html>
