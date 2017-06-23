@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="static/tables.css">
 </head>
 
-<body onload="getClients();getCompanies();">
+<body onload="status_webserver();getClients();getCompanies();">
 	<div class="row-fluid">
 		<ul class="navigationBar">
 			<li class="navigationButtons navigationButtonsLeft">
@@ -44,18 +44,18 @@
 
 					<div class="tab-content">
 						<div id="home" class="tab-pane fade in active">
-							<h3>Healtcheck</h3>
+							<h3>Healthcheck</h3>
 
 							<br>
 							<div id="databaseHC" class="HCsuccess">
 								<p><span class="glyphicon glyphicon-tasks"></span> - MySQL</p>
 							</div>
-							<div i="webserverHC" class="HCdanger">
+							<div id="webserverHC" class="">
 								<p><span class="glyphicon glyphicon-globe"></span> - Nginx</p>
 							</div>
 
 							<br>
-							<button class="btn btn-info"><span><i class="glyphicon glyphicon-refresh"></i></span> Update</button>
+							<button class="btn btn-info" onclick="status_webserver();"><span><i class="glyphicon glyphicon-refresh"></i></span> Update</button>
 						</div>
 						<div id="menu1" class="tab-pane fade">
 							<br>
@@ -235,6 +235,7 @@
 	<script src="static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	<script src="static/scripts/db_clients.js"></script>
 	<script src="static/scripts/db_companies.js"></script>
+	<script src="static/scripts/healthcheck.js"></script>
 	<script src="static/scripts/alerts.js"></script>
 </body>
 
