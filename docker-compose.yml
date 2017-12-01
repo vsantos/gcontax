@@ -1,7 +1,7 @@
 version: '2'
 services:
   app:
-    build: app/
+    build: gcontax-app/app/
     image: gcontax:0.1
     ports:
       - "8080:8080"
@@ -10,7 +10,7 @@ services:
     links:
       - "storage:mysql_database_host"
   storage:
-    build: storage/
+    build: gcontax-app/storage/
     image: gcontax_database:0.1
     ports:
       - "3306:3306"
@@ -20,9 +20,9 @@ services:
       - MYSQL_PASSWORD=gcontax
       - MYSQL_DATABASE=gcontax
     volumes:
-      - ./var/mysql:/var/lib/mysql
+      - ./gcontax-app/var/mysql:/var/lib/mysql
   webserver:
-    build: webserver/
+    build: gcontax-app/webserver/
     image: gcontax_nginx:0.1
     ports:
       - "80:80"
